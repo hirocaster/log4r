@@ -51,15 +51,14 @@ module Log4r
       @level = levels.sort.first
       OutputterFactory.create_methods self, levels
       Logger.log_internal {
-        "Outputter '#{@name}' writes only on " +\
-        levels.collect{|l| LNAMES[l]}.join(", ")
+        "Outputter '#{@name}' writes only on #{levels.collect{|l| LNAMES[l]}.join(", ")}"
       }
     end
 
     # Dynamically change the formatter. You can just specify a Class
     # object and the formatter will invoke +new+ or +instance+
     # on it as appropriate.
- 
+
     def formatter=(_formatter)
       if _formatter.kind_of?(Formatter)
         @formatter = _formatter
